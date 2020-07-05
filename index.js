@@ -9,23 +9,30 @@ const renderImg = (image) => {
 
 const url = "https://thesimpsonsquoteapi.glitch.me/quotes";
 
-fetch(url, {
-  mode: 'cors'
-})
-  .then((response) => {
-    return response.json();
+const changeFunction = () => {
+  fetch(url, {
+    mode: 'cors'
   })
-  .then((data) => {
-    const newData = data.reduce((accum, currentValue) => {
-      accum = + currentValue;
+    .then((response) => {
+      return response.json();
     })
-    console.log(newData);
-    renderImg(newData.image);
-    characterQuote.textContent = `"${newData.quote}"`;
-    characterName.textContent = newData.character;
-  })
+    .then((data) => {
+      const newData = data.reduce((accum, currentValue) => {
+        accum = + currentValue;
+      })
+      console.log(newData);
+      renderImg(newData.image);
+      characterQuote.textContent = `"${newData.quote}"`;
+      characterName.textContent = newData.character;
+    })
+
+
+};
 
 btn.addEventListener("click", () => {
-  window.location.reload();
-  // history.pushState(url);
+  changeFunction();
 })
+
+changeFunction();
+
+
