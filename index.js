@@ -9,7 +9,9 @@ const renderImg = (image) => {
 
 const url = "https://thesimpsonsquoteapi.glitch.me/quotes";
 
-fetch(url)
+fetch(url, {
+  mode: 'cors'
+})
   .then((response) => {
     return response.json();
   })
